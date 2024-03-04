@@ -11,7 +11,6 @@ db = SQLAlchemy()
 migrate = Migrate ()
 
 def create_app(config_mode):
-    # Se crea y configura la app
     
     app = Flask (__name__ , instance_relative_config=True)
     app.config.from_object(config[config[config_mode]])
@@ -19,8 +18,10 @@ def create_app(config_mode):
     db.init_app (app, db)
     migrate.init_app(app, db)
 
+    return app
 
-    # if test_config is None:
+
+# if test_config is None:
     #     # load the instance config, if it exists, when not testing
     #     app.config.from_pyfile('config.py', silent=True)
     # else:
@@ -35,9 +36,3 @@ def create_app(config_mode):
 
     # app.register_blueprint(booking)
     # app.add_url_rule('/', endpoint='index')
-
-
-    return app
-
-
-
